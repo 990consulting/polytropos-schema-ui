@@ -98,10 +98,16 @@ class MainController:
         self.main_view.tree_view.dataChanged(index,
                                              index,
                                              [QtCore.Qt.ForegroundRole])
-        self.main_view.tree_view.dataChanged(index,
-                                             index,
-                                             [QtCore.Qt.TextColorRole])
+        self.set_style_to_tree('blue')
 
+    def set_style_to_tree(self, style):
+        self.main_view.tree_view.setStyleSheet(
+            '''
+                QTreeView::item::selected {
+                  selection-color: ''' + style + ''';
+                }
+            '''
+        )
 
     def data_type_changed(self, selected):
         try:
@@ -133,6 +139,7 @@ class MainController:
 
     def tree_selection_changed(self, selected):
         try:
+            self.select_dynamic_style(selected)
             #self.change_var_id()
             self.selectedItem = selected
             if selected is None:
@@ -156,6 +163,18 @@ class MainController:
         except Exception as e:
             print("tree_selection_changed failed: {}".format(e))
             print(traceback.format_exc())
+
+
+
+    def select_dynamic_style(self, selected):
+        if selected.valueChanged:
+            style = 'blue'
+        elif selected.newAdded:
+            style = 'green'
+        else:
+            style = 'black'
+        self.set_style_to_tree(style)
+
 
     def update_metadata_model(self):
         try:
