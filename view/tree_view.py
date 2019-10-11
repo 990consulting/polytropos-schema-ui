@@ -20,7 +20,6 @@ class TreeView(QtWidgets.QTreeView, QtCore.QObject):
             self.setDragEnabled(True)
             self.index_selected = None
             self.text_to_search = ""
-
         except Exception as e:
             print("View initialization failed: {}".format(e))
             print(traceback.format_exc())

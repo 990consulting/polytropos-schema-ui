@@ -79,6 +79,8 @@ class TreeModel(QtCore.QAbstractItemModel):
                     return QtGui.QBrush(QtCore.Qt.darkGreen)
                 elif item.valueChanged:
                     return QtGui.QBrush(QtCore.Qt.blue)
+                else:
+                    return None
             elif role == QtCore.Qt.DecorationRole:
                 if item.newAdded:
                     return qta.icon(TypeManager.type_icon_dictionary[item.getDataType()], options=[{'color': 'green'}])
@@ -96,6 +98,7 @@ class TreeModel(QtCore.QAbstractItemModel):
 
     # inherited Method
     def setData(self, index, value, role=QtCore.Qt.EditRole):
+
         if role != QtCore.Qt.EditRole:
             return False
         if value == "":

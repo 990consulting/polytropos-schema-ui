@@ -15,14 +15,15 @@ class JsonFileManager(QtWidgets.QWidget):
         self.file_path = ""
         self.json_data = []
 
-    def get_json_path(self):
+    def get_json_data(self):
+        print(self.file_path)
         try:
-            options = QtWidgets.QFileDialog.Options()
-            options |= QtWidgets.QFileDialog.DontUseNativeDialog
-            fileName, _ = QtWidgets.QFileDialog.getOpenFileName(QtWidgets.QFileDialog(), "Open", "", "Json Files (*.json);;All Files (*)",
-                                                                options=options)
-            if fileName:
-                self.file_path = fileName
+            if self.file_path == "":
+                options = QtWidgets.QFileDialog.Options()
+                options |= QtWidgets.QFileDialog.DontUseNativeDialog
+                self.file_path, _ = QtWidgets.QFileDialog.getOpenFileName(QtWidgets.QFileDialog(), "Open", "", "Json Files (*.json);;All Files (*)",
+                                                                    options=options)
+            if self.file_path:
                 with open(self.file_path) as f:
                     try:
                         self.json_data = json.load(f)

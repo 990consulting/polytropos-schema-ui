@@ -95,6 +95,13 @@ class MainController:
         self.main_view.tree_view.dataChanged(index,
                                              index,
                                              [QtCore.Qt.DecorationRole])
+        self.main_view.tree_view.dataChanged(index,
+                                             index,
+                                             [QtCore.Qt.ForegroundRole])
+        self.main_view.tree_view.dataChanged(index,
+                                             index,
+                                             [QtCore.Qt.TextColorRole])
+
 
     def data_type_changed(self, selected):
         try:
@@ -109,6 +116,8 @@ class MainController:
             self.selectedItem.setDataType(selected)
             current_index = self.main_view.tree_view.selectedIndexes()[0]
             self.main_view.tree_view.dataChanged(current_index, current_index, [QtCore.Qt.DecorationRole])
+            self.selectedItem.setValueChanged(True)
+            self.set_decoration_role()
         except Exception as e:
             print("data_type_changed failed: {}".format(e))
             print(traceback.format_exc())
@@ -117,6 +126,7 @@ class MainController:
         try:
             self.main_view.right_side_widget.setTitle(value)
             self.main_view.path_value_textbox.setText(self.selectedItem.fullPath())
+
         except Exception as e:
             print("tree_value_changed failed: {}".format(e))
             print(traceback.format_exc())
@@ -206,7 +216,7 @@ class MainController:
     def get_json_data(self):
         try:
             self.JsonManager = JsonFileManager()
-            self.JsonManager.get_json_path()
+            self.JsonManager.get_json_data()
         except Exception as e:
             print("get_json_data failed: {}".format(e))
             print(traceback.format_exc())
@@ -224,6 +234,7 @@ class MainController:
             dialog_result = QtWidgets.QMessageBox.question(QtWidgets.QMessageBox(), "Confirm", "Would you revert?")
             if dialog_result == QtWidgets.QMessageBox.Yes:
                 self.main_view.tree_view.clearContent()
+                self.JsonManager.get_json_data()
                 self.create_tree()
                 self.selectedItem = None
         except Exception as e:
