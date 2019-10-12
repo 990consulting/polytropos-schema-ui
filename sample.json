@@ -1,11 +1,11 @@
 [
   {
-    "title": "i_folder",
+    "title": "abc",
     "varId": "i_folder_in_root",
     "dataType": "Folder",
     "children": [
       {
-        "title": "some_text",
+        "title": "bzx 12 @",
         "varId": "i_text_in_folder",
         "dataType": "Text",
         "sources": [
@@ -20,7 +20,7 @@
         }
       },
       {
-        "title": "some_int",
+        "title": "iM b_b",
         "varId": "i_int_in_folder",
         "dataType": "Integer",
         "sources": [
@@ -35,7 +35,7 @@
         }
       },
       {
-        "title": "simple_list",
+        "title": "mnemosyne",
         "varId": "i_list_in_folder",
         "dataType": "List",
         "children": [
@@ -54,7 +54,7 @@
     ]
   },
   {
-    "title": "simple_list",
+    "title": "floral",
     "varId": "i_list_in_root",
     "dataType": "List",
     "sources": [
@@ -68,7 +68,7 @@
     },
     "children": [
       {
-        "title": "some_text",
+        "title": "hymenoptera",
         "varId": "i_text_in_list",
         "dataType": "Text",
         "metadata": {
@@ -134,7 +134,7 @@
     ]
   },
   {
-    "title": "fuck",
+    "title": "goteborg",
     "varId": "copy_of_i_keyed_list_in_root",
     "dataType": "KeyedList",
     "sources": [
@@ -151,25 +151,26 @@
     },
     "children": [
       {
-        "title": "this",
+        "title": "wallenburger",
         "varId": "7Wry3P5DJ94nDV3tJyhi",
-        "dataType": "Folder",
+        "dataType": "List",
         "children": [
           {
-            "title": "some_text",
+            "title": "gravy",
             "varId": "copy_of_i_text_in_keyed_list",
             "dataType": "Binary",
             "sources": [
-              "source_1_for_i_text_in_keyed_list"
+              "gravysource2"
             ],
             "metadata": {
-              "foo": "bar"
+              "foo": "bar",
+              "roux": "flour"
             }
           }
         ]
       },
       {
-        "title": "Copy of some_text",
+        "title": "Copy of gravy",
         "varId": "copy_of_copy_of_i_text_in_keyed_list",
         "dataType": "Binary",
         "sources": [

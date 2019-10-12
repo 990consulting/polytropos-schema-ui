@@ -38,10 +38,6 @@ class MainController:
         self.main_view.tree_view.tree_value_changed.connect(self.tree_value_changed)
         self.main_view.metadata_table_clicked.connect(self.metadata_table_clicked)
         self.main_view.save_clicked.connect(self.save_clicked)
-
-        # TODO The only thing this does is call a method inside of main_view; main_controller should not be involved.
-        self.main_view.search_text_entered.connect(self.do_search)
-
         self.main_view.change_var_id.connect(self.change_var_id)
 
     def disable_right_panel(self):
@@ -58,9 +54,6 @@ class MainController:
         self.selectedItem.setMetaData(self.main_view.metadata_table.model().getMetaData())
         self.selectedItem.setValueChanged(True)
         self.set_decoration_role()
-
-    def do_search(self, text):
-        self.main_view.tree_view.start_search(text)
 
     def change_var_id(self):
         if self.selectedItem is not None and self.main_view.var_id_textbox.text() != self.selectedItem.getVarId():

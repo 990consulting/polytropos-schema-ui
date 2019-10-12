@@ -38,6 +38,7 @@ class MainWindow(QtWidgets.QWidget):
             self.var_id_textbox.editingFinished.connect(self.change_var_id)
             self.revert_button.clicked.connect(self.revert_button_clicked)
             self.search_field.textChanged.connect(self.search_text_entered)
+            self.search_text_entered.connect(self.tree_view.start_search)
         except Exception as e:
             print("connect_signals failed: {}".format(e))
             print(traceback.format_exc())
