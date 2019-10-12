@@ -17,9 +17,9 @@ class TypeManager(object):
         "Integer": 'fa5s.superscript',
         "Currency": 'fa5s.money-bill-alt',
         "Date": 'fa5s.calendar',
-        "Binary": 'fa5s.balace-scale',
+        "Binary": 'fa5s.balance-scale',
         "Unary": 'fa5s.check-circle',
-        "Decimal ": 'fa5s.file',
+        "Decimal": 'fa5s.file',
         "Float": 'fa5s.file'
     }
 

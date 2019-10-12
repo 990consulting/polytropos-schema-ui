@@ -95,6 +95,19 @@ class MainController:
         self.main_view.tree_view.dataChanged(index,
                                              index,
                                              [QtCore.Qt.DecorationRole])
+        self.main_view.tree_view.dataChanged(index,
+                                             index,
+                                             [QtCore.Qt.ForegroundRole])
+        self.set_style_to_tree('blue')
+
+    def set_style_to_tree(self, style):
+        self.main_view.tree_view.setStyleSheet(
+            '''
+                QTreeView::item::selected {
+                  selection-color: ''' + style + ''';
+                }
+            '''
+        )
 
     def data_type_changed(self, selected):
         try:
@@ -109,6 +122,8 @@ class MainController:
             self.selectedItem.setDataType(selected)
             current_index = self.main_view.tree_view.selectedIndexes()[0]
             self.main_view.tree_view.dataChanged(current_index, current_index, [QtCore.Qt.DecorationRole])
+            self.selectedItem.setValueChanged(True)
+            self.set_decoration_role()
         except Exception as e:
             print("data_type_changed failed: {}".format(e))
             print(traceback.format_exc())
@@ -117,12 +132,14 @@ class MainController:
         try:
             self.main_view.right_side_widget.setTitle(value)
             self.main_view.path_value_textbox.setText(self.selectedItem.fullPath())
+
         except Exception as e:
             print("tree_value_changed failed: {}".format(e))
             print(traceback.format_exc())
 
     def tree_selection_changed(self, selected):
         try:
+            self.select_dynamic_style(selected)
             #self.change_var_id()
             self.selectedItem = selected
             if selected is None:
@@ -146,6 +163,18 @@ class MainController:
         except Exception as e:
             print("tree_selection_changed failed: {}".format(e))
             print(traceback.format_exc())
+
+
+
+    def select_dynamic_style(self, selected):
+        if selected.valueChanged:
+            style = 'blue'
+        elif selected.newAdded:
+            style = 'green'
+        else:
+            style = 'black'
+        self.set_style_to_tree(style)
+
 
     def update_metadata_model(self):
         try:
@@ -206,7 +235,7 @@ class MainController:
     def get_json_data(self):
         try:
             self.JsonManager = JsonFileManager()
-            self.JsonManager.get_json_path()
+            self.JsonManager.get_json_data()
         except Exception as e:
             print("get_json_data failed: {}".format(e))
             print(traceback.format_exc())
@@ -224,6 +253,7 @@ class MainController:
             dialog_result = QtWidgets.QMessageBox.question(QtWidgets.QMessageBox(), "Confirm", "Would you revert?")
             if dialog_result == QtWidgets.QMessageBox.Yes:
                 self.main_view.tree_view.clearContent()
+                self.JsonManager.get_json_data()
                 self.create_tree()
                 self.selectedItem = None
         except Exception as e:
