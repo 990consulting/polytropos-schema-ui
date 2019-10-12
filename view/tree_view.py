@@ -1,3 +1,5 @@
+from typing import List
+
 from PyQt5 import QtWidgets, QtCore
 from model.tree_model import TreeModel
 from model.tree_item import TreeItem
@@ -48,7 +50,7 @@ class TreeView(QtWidgets.QTreeView, QtCore.QObject):
         actions
     """
 
-    def load_data(self, data):
+    def load_data(self, data: List):
         self.tree_model.load_data(data)
 
     def clearContent(self):
@@ -207,7 +209,7 @@ class TreeView(QtWidgets.QTreeView, QtCore.QObject):
         new_Item.setNewAdded(True)
         return new_Item
 
-    def _start_search(self, text):
+    def start_search(self, text):
         if not self.tree_model.hasIndex(0, 0) or text.replace(' ', '') == "":
             self._show_all(self.tree_model.index(0, 0).parent())
             self.collapseAll()

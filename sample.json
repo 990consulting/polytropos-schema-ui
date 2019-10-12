@@ -8,31 +8,31 @@
         "title": "some_text",
         "varId": "i_text_in_folder",
         "dataType": "Text",
+        "sources": [
+          "source_1_for_i_text_in_folder"
+        ],
         "metadata": {
           "find risk take": "She beat get staff after continue remember. Chance ever customer main.",
           "up": "Policy personal would theory another type. Item position recently time single consider question notice. Reveal one ready fish arm. East each surface high piece teach society.",
           "by social forward": "Act little join business late century third. Car turn accept administration class. Senior finally determine name.",
           "difference find opportunity": "Begin list court. Ability knowledge human theory. They fine response include girl more.",
           "home": "Because night nearly task during. They different light girl woman after computer."
-        },
-        "sources": [
-          "source_1_for_i_text_in_folder"
-        ]
+        }
       },
       {
         "title": "some_int",
         "varId": "i_int_in_folder",
         "dataType": "Integer",
+        "sources": [
+          "source_1_for_i_int_in_folder"
+        ],
         "metadata": {
           "order chance machine": "While argue business college garden. Pretty her population yourself against report something. Which leader economy question current left.",
           "stage": "Group no campaign brother under him remain idea. Whole exist crime nothing together.",
           "admit": "Bill life benefit job soon camera. Thus election color. Your this set behavior operation argue seven safe.",
           "set her": "Store cell interview skill. Out a region product. Out believe without close much front.",
           "fear player knowledge": "Artist others summer occur design produce us attention. Account to player prepare. List southern hope like."
-        },
-        "sources": [
-          "source_1_for_i_int_in_folder"
-        ]
+        }
       },
       {
         "title": "simple_list",
@@ -57,6 +57,15 @@
     "title": "simple_list",
     "varId": "i_list_in_root",
     "dataType": "List",
+    "sources": [
+      "source_1_for_i_list_in_root"
+    ],
+    "metadata": {
+      "free along": "Animal cause gun. Because create cell ground glass carry.",
+      "who factor second": "Focus travel store parent us. Including then nice buy better home.",
+      "common part ahead": "Third nor billion hope make. Arm few ok huge fire. Court charge place reduce ready method.",
+      "child kind land": "Produce out travel letter. Recently eat place relationship woman right knowledge. Sound organization why."
+    },
     "children": [
       {
         "title": "some_text",
@@ -71,54 +80,15 @@
           "throw bad": "Fall report here. Spend that game fund themselves tough size. Avoid boy speak want increase forward."
         }
       }
-    ],
-    "metadata": {
-      "free along": "Animal cause gun. Because create cell ground glass carry.",
-      "who factor second": "Focus travel store parent us. Including then nice buy better home.",
-      "common part ahead": "Third nor billion hope make. Arm few ok huge fire. Court charge place reduce ready method.",
-      "child kind land": "Produce out travel letter. Recently eat place relationship woman right knowledge. Sound organization why."
-    },
-    "sources": [
-      "source_1_for_i_list_in_root"
     ]
   },
   {
     "title": "simple_keyed_list",
     "varId": "i_keyed_list_in_root",
     "dataType": "KeyedList",
-    "children": [
-      {
-        "title": "some_text",
-        "varId": "i_text_in_keyed_list",
-        "dataType": "Text",
-        "metadata": {
-          "machine goal": "Sense method grow piece identify each sister trade. Word admit local commercial economic.",
-          "realize detail north": "Rest describe under hour culture require price. Year dark if require since. Election base case walk mission deal.",
-          "clearly shoulder pass": "They toward today during mission great begin feeling. Improve recent almost source.",
-          "ahead pay attorney": "Spend may leave behavior the. Media degree treat finally born.",
-          "speech red remain": "Industry gun production after know create.",
-          "seven": "Yeah book guy become a employee he. Cost consumer provide keep. Who talk fine certain economic want."
-        },
-        "sources": [
-          "source_1_for_i_text_in_keyed_list"
-        ]
-      },
-      {
-        "title": "some_int",
-        "varId": "i_int_in_keyed_list",
-        "dataType": "Integer",
-        "metadata": {
-          "similar continue": "Either outside these perhaps. Question his eye hospital art red.",
-          "former learn like": "Usually prepare site there theory who dark. Teacher without although buy learn seem send moment.",
-          "serious information glass": "Fire still team voice work. Run family moment happy to gas. Development fill analysis else national investment say.",
-          "section lot activity": "Anything which expert news again arrive between dinner.",
-          "sign": "Executive if pass job knowledge cell. Hospital themselves chance remember gas.",
-          "hair soon": "Degree own fight history practice view. However large involve support some exist.",
-          "than current": "Year of cut.",
-          "party response worry": "Condition attention trade campaign.",
-          "play": "Dark hundred instead service. Population carry really avoid believe."
-        }
-      }
+    "sources": [
+      "source_1_for_i_keyed_list_in_root",
+      "source_2_for_i_keyed_list_in_root"
     ],
     "metadata": {
       "learn program out": "Top piece staff stay series clear article collection. Resource history PM none. Song experience democratic idea lot.",
@@ -128,15 +98,107 @@
       "do against": "Unit outside bill activity property. Change town so team effort less.",
       "hear individual central": "Score better skin myself live. Feeling speech air center. Air clear computer general stay."
     },
+    "children": [
+      {
+        "title": "some_text",
+        "varId": "i_text_in_keyed_list",
+        "dataType": "Binary",
+        "sources": [
+          "source_1_for_i_text_in_keyed_list"
+        ],
+        "metadata": {
+          "machine goal": "Sense method grow piece identify each sister trade. Word admit local commercial economic.",
+          "realize detail north": "Rest describe under hour culture require price. Year dark if require since. Election base case walk mission deal.",
+          "clearly shoulder pass": "They toward today during mission great begin feeling. Improve recent almost source.",
+          "ahead pay attorney": "Spend may leave behavior the. Media degree treat finally born.",
+          "speech red remain": "Industry gun production after know create.",
+          "seven": "Yeah book guy become a employee he. Cost consumer provide keep. Who talk fine certain economic want."
+        }
+      },
+      {
+        "title": "Copy of some_text",
+        "varId": "copy_of_i_text_in_keyed_list",
+        "dataType": "Binary",
+        "sources": [
+          "source_1_for_i_text_in_keyed_list"
+        ],
+        "metadata": {
+          "machine goal": "Sense method grow piece identify each sister trade. Word admit local commercial economic.",
+          "realize detail north": "Rest describe under hour culture require price. Year dark if require since. Election base case walk mission deal.",
+          "clearly shoulder pass": "They toward today during mission great begin feeling. Improve recent almost source.",
+          "ahead pay attorney": "Spend may leave behavior the. Media degree treat finally born.",
+          "speech red remain": "Industry gun production after know create.",
+          "seven": "Yeah book guy become a employee he. Cost consumer provide keep. Who talk fine certain economic want."
+        }
+      }
+    ]
+  },
+  {
+    "title": "fuck",
+    "varId": "copy_of_i_keyed_list_in_root",
+    "dataType": "KeyedList",
     "sources": [
       "source_1_for_i_keyed_list_in_root",
       "source_2_for_i_keyed_list_in_root"
+    ],
+    "metadata": {
+      "learn program out": "Top piece staff stay series clear article collection. Resource history PM none. Song experience democratic idea lot.",
+      "simple": "Forward light crime name actually human.",
+      "body author": "Still rest they part apply level five. Arm age could week international civil eat. Attention wrong particularly think enter feel.",
+      "yeah great money": "Responsibility pick air son. Manage only by.",
+      "do against": "Unit outside bill activity property. Change town so team effort less.",
+      "hear individual central": "Score better skin myself live. Feeling speech air center. Air clear computer general stay."
+    },
+    "children": [
+      {
+        "title": "this",
+        "varId": "7Wry3P5DJ94nDV3tJyhi",
+        "dataType": "Folder",
+        "children": [
+          {
+            "title": "some_text",
+            "varId": "copy_of_i_text_in_keyed_list",
+            "dataType": "Binary",
+            "sources": [
+              "source_1_for_i_text_in_keyed_list"
+            ],
+            "metadata": {
+              "foo": "bar"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Copy of some_text",
+        "varId": "copy_of_copy_of_i_text_in_keyed_list",
+        "dataType": "Binary",
+        "sources": [
+          "source_1_for_i_text_in_keyed_list"
+        ],
+        "metadata": {
+          "machine goal": "Sense method grow piece identify each sister trade. Word admit local commercial economic.",
+          "realize detail north": "Rest describe under hour culture require price. Year dark if require since. Election base case walk mission deal.",
+          "clearly shoulder pass": "They toward today during mission great begin feeling. Improve recent almost source.",
+          "ahead pay attorney": "Spend may leave behavior the. Media degree treat finally born.",
+          "speech red remain": "Industry gun production after know create.",
+          "seven": "Yeah book guy become a employee he. Cost consumer provide keep. Who talk fine certain economic want."
+        }
+      }
     ]
   },
   {
     "title": "outer_list",
     "varId": "i_outer_nested_list",
     "dataType": "List",
+    "metadata": {
+      "local arm": "Natural usually his everything. Politics take shake real concern. Government field though he.",
+      "value": "Information according attorney cultural. Rule realize by meet recently science he important.",
+      "front": "A safe hair choice.",
+      "will": "Rest surface moment great agent. Mind sometimes position data become.",
+      "instead": "Meet recent law seek produce spring. Nature stop role contain high. Strong learn now under city business lay.",
+      "through": "Operation help role care.",
+      "material": "A very project movie alone soon attorney. Individual allow more day news way."
+    },
     "children": [
       {
         "title": "some_text",
@@ -159,6 +221,20 @@
         "title": "inner_list",
         "varId": "i_inner_nested_list",
         "dataType": "List",
+        "sources": [
+          "source_1_for_i_inner_nested_list"
+        ],
+        "metadata": {
+          "result gas exist": "Rise seat follow on into situation anyone. Stand feel force race occur station.",
+          "book": "Minute safe mission from concern.",
+          "artist": "Store actually show hope statement employee region. Hit before get add. Leg phone idea of reveal law.",
+          "federal turn": "Even wear eye this unit bring. Product why administration since guess own. Notice relationship whole. Under out around class sort prepare event rise.",
+          "others wrong": "Fine chance sister wind.",
+          "thousand go": "Might where course left particular tax attention early. Study sense above. Accept source trade behavior or.",
+          "course light security": "Candidate catch gas can. System party radio resource child.",
+          "treatment meet choice": "Response ago energy plant general material local. Summer between tree think off. People result share require clearly program head.",
+          "assume gas reveal": "Pressure us enough left institution where. Operation hundred relationship garden be. East peace sea page cup radio."
+        },
         "children": [
           {
             "title": "some_text",
@@ -183,32 +259,9 @@
               }
             ]
           }
-        ],
-        "metadata": {
-          "result gas exist": "Rise seat follow on into situation anyone. Stand feel force race occur station.",
-          "book": "Minute safe mission from concern.",
-          "artist": "Store actually show hope statement employee region. Hit before get add. Leg phone idea of reveal law.",
-          "federal turn": "Even wear eye this unit bring. Product why administration since guess own. Notice relationship whole. Under out around class sort prepare event rise.",
-          "others wrong": "Fine chance sister wind.",
-          "thousand go": "Might where course left particular tax attention early. Study sense above. Accept source trade behavior or.",
-          "course light security": "Candidate catch gas can. System party radio resource child.",
-          "treatment meet choice": "Response ago energy plant general material local. Summer between tree think off. People result share require clearly program head.",
-          "assume gas reveal": "Pressure us enough left institution where. Operation hundred relationship garden be. East peace sea page cup radio."
-        },
-        "sources": [
-          "source_1_for_i_inner_nested_list"
         ]
       }
-    ],
-    "metadata": {
-      "local arm": "Natural usually his everything. Politics take shake real concern. Government field though he.",
-      "value": "Information according attorney cultural. Rule realize by meet recently science he important.",
-      "front": "A safe hair choice.",
-      "will": "Rest surface moment great agent. Mind sometimes position data become.",
-      "instead": "Meet recent law seek produce spring. Nature stop role contain high. Strong learn now under city business lay.",
-      "through": "Operation help role care.",
-      "material": "A very project movie alone soon attorney. Individual allow more day news way."
-    }
+    ]
   },
   {
     "title": "outer_keyed_list",
@@ -234,6 +287,21 @@
         "title": "inner_keyed_list",
         "varId": "i_inner_nested_keyed_list",
         "dataType": "KeyedList",
+        "sources": [
+          "source_1_for_i_inner_nested_keyed_list",
+          "source_2_for_i_inner_nested_keyed_list",
+          "source_3_for_i_inner_nested_keyed_list"
+        ],
+        "metadata": {
+          "direction": "Risk every general successful own. Forward media organization hundred good film. Ball record talk help standard environmental garden. Including give bank eight develop.",
+          "population": "Safe my represent likely personal performance thing. Away fund science song pretty. Scene lawyer morning of history. Science spend these.",
+          "police": "These occur agree return. Green benefit soldier her kitchen hair near. Spring pass maintain community.",
+          "church indeed": "Where part wonder defense. Identify hand customer name evening section.",
+          "leg drug": "Experience bag offer finish. Community letter life out meet song scientist. Firm customer citizen traditional. Same situation family improve seem chair.",
+          "reason contain": "Near resource lay production. Occur in expert parent apply build.",
+          "fund color": "Eat method do great blue live. Star note respond anyone affect. Result opportunity course tree blood knowledge middle.",
+          "return guess": "Oil end truth effect building firm increase. Note guy spring gas above about campaign."
+        },
         "children": [
           {
             "title": "some_text",
@@ -255,6 +323,10 @@
             "title": "a_list",
             "varId": "i_list_in_inner_nested_keyed_list",
             "dataType": "List",
+            "sources": [
+              "source_1_for_i_list_in_inner_nested_keyed_list",
+              "source_2_for_i_list_in_inner_nested_keyed_list"
+            ],
             "children": [
               {
                 "title": "some_text",
@@ -273,12 +345,11 @@
                 "title": "yet_another_keyed_list",
                 "varId": "i_keyed_list_in_list_in_inner_nested_keyed_list",
                 "dataType": "KeyedList",
-                "children": [
-                  {
-                    "title": "some_text",
-                    "varId": "i_text_in_keyed_list_in_list_in_inner_nested_keyed_list",
-                    "dataType": "Text"
-                  }
+                "sources": [
+                  "source_1_for_i_keyed_list_in_list_in_inner_nested_keyed_list",
+                  "source_2_for_i_keyed_list_in_list_in_inner_nested_keyed_list",
+                  "source_3_for_i_keyed_list_in_list_in_inner_nested_keyed_list",
+                  "source_4_for_i_keyed_list_in_list_in_inner_nested_keyed_list"
                 ],
                 "metadata": {
                   "issue": "Door huge difference tonight not fly surface fish. Yes quality energy hotel participant.",
@@ -286,34 +357,16 @@
                   "inside and think": "Decade card idea want. Similar sound because each. Right turn raise man first any face present. Analysis value baby best house I college.",
                   "class public method": "Require candidate southern paper firm break season individual. Feeling thing concern."
                 },
-                "sources": [
-                  "source_1_for_i_keyed_list_in_list_in_inner_nested_keyed_list",
-                  "source_2_for_i_keyed_list_in_list_in_inner_nested_keyed_list",
-                  "source_3_for_i_keyed_list_in_list_in_inner_nested_keyed_list",
-                  "source_4_for_i_keyed_list_in_list_in_inner_nested_keyed_list"
+                "children": [
+                  {
+                    "title": "some_text",
+                    "varId": "i_text_in_keyed_list_in_list_in_inner_nested_keyed_list",
+                    "dataType": "Text"
+                  }
                 ]
               }
-            ],
-            "sources": [
-              "source_1_for_i_list_in_inner_nested_keyed_list",
-              "source_2_for_i_list_in_inner_nested_keyed_list"
             ]
           }
-        ],
-        "metadata": {
-          "direction": "Risk every general successful own. Forward media organization hundred good film. Ball record talk help standard environmental garden. Including give bank eight develop.",
-          "population": "Safe my represent likely personal performance thing. Away fund science song pretty. Scene lawyer morning of history. Science spend these.",
-          "police": "These occur agree return. Green benefit soldier her kitchen hair near. Spring pass maintain community.",
-          "church indeed": "Where part wonder defense. Identify hand customer name evening section.",
-          "leg drug": "Experience bag offer finish. Community letter life out meet song scientist. Firm customer citizen traditional. Same situation family improve seem chair.",
-          "reason contain": "Near resource lay production. Occur in expert parent apply build.",
-          "fund color": "Eat method do great blue live. Star note respond anyone affect. Result opportunity course tree blood knowledge middle.",
-          "return guess": "Oil end truth effect building firm increase. Note guy spring gas above about campaign."
-        },
-        "sources": [
-          "source_1_for_i_inner_nested_keyed_list",
-          "source_2_for_i_inner_nested_keyed_list",
-          "source_3_for_i_inner_nested_keyed_list"
         ]
       }
     ]
