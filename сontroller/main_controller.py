@@ -26,8 +26,8 @@ class MainController:
         self.connect_callbacks()
 
     def set_models(self):
-        self.set_metadata_table_model()
-        self.set_source_table_model()
+        self.initialize_metadata_table()
+        self.initialize_source_table()
 
     def connect_callbacks(self):
         logging.info("Connecting events to view changes.")
@@ -185,17 +185,11 @@ class MainController:
             self.create_tree()
             self.selectedItem = None
 
-    def set_metadata_table_model(self):
-        logging.info("Connecting metadata view to underlying data model.")
+    def initialize_metadata_table(self):
         self.main_view.metadata_table.setModel(MetadataTableModel())
-        # TODO The following is not data-related and should be handled inside the view
-        horizontal_header = self.main_view.metadata_table.horizontalHeader()
-        horizontal_header.setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)
-        horizontal_header.setSectionResizeMode(1, QtWidgets.QHeaderView.Stretch)
-        horizontal_header.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeToContents)
-        horizontal_header.setSectionResizeMode(3, QtWidgets.QHeaderView.ResizeToContents)
+        self.main_view.metadata_table.setup_horizontal_header()
 
-    def set_source_table_model(self):
+    def initialize_source_table(self):
         logging.info("Connecting source view to underlying data model.")
         self.main_view.source_table.setModel(SourceTableModel())
         # TODO The following is not data-related and should be handled inside the view

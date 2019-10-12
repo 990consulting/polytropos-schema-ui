@@ -1,6 +1,8 @@
 import logging
 
 from PyQt5 import QtCore, QtWidgets
+
+from view.metadata_table_view import MetadataTableView
 from view.tree_view import TreeView
 import traceback
 
@@ -76,10 +78,7 @@ class MainWindow(QtWidgets.QWidget):
         self.source_table.setFixedHeight(62)
 
     def _create_metadata_table(self):
-        self.metadata_table = QtWidgets.QTableView()
-        self.metadata_table.verticalHeader().hide()
-        self.metadata_table.resizeRowsToContents()
-        self.metadata_table.verticalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
+        self.metadata_table = MetadataTableView()
 
     def _create_left_pane_buttons(self):
         layout = QtWidgets.QHBoxLayout()
