@@ -6,16 +6,16 @@ from model.source_table_model import SourceTableModel
 from model.metadata_table_model import MetadataTableModel
 from view.main_view import MainWindow
 import traceback
-
+import logging
 
 class MainController:
 
     def __init__(self):
+        logging.info("Initializing MainController.")
+        # Initialize Qt state -- this must happen before constructing other Qt "widgets"
         self._app = QtWidgets.QApplication(sys.argv)
-        self._source_model = SourceTableModel()
         self.main_view = MainWindow()
         self.selectedItem = None
-        self.is_selection_changed = False
         self.is_selection_changed = False
         self.init()
 

@@ -4,6 +4,7 @@ import traceback
 
 
 class SourceTableModel(QtCore.QAbstractTableModel):
+    """Table for viewing and modifying the variable sources, appearing within the detail pane."""
 
     def __init__(self, sources=None, parent=None):
         super().__init__(parent)
@@ -19,15 +20,13 @@ class SourceTableModel(QtCore.QAbstractTableModel):
             print("Initialization failed: {}".format(e))
             print(traceback.format_exc())
 
-    """
-       The methods below are overridden methods of the base abstract class QAbstractItemModel
-    """
-
+    # override
     def flags(self, index):
         if index.column() == 0:
             return QtCore.Qt.ItemIsEnabled | QtCore.Qt.ItemIsEditable
         return super().flags(index)
 
+    # override
     def rowCount(self, parent=QtCore.QModelIndex()):
         if self.sources is None:
             return 0
@@ -36,9 +35,11 @@ class SourceTableModel(QtCore.QAbstractTableModel):
         else:
             return len(self.sources)
 
+    # override
     def columnCount(self, parent=QtCore.QModelIndex()):
         return 3
 
+    # override
     def data(self, index, role=QtCore.Qt.DisplayRole):
 
         if not index.isValid():
@@ -56,6 +57,7 @@ class SourceTableModel(QtCore.QAbstractTableModel):
                 return ""
             return self.sources[index.row()]
 
+    # override
     def setData(self, index, value, role=QtCore.Qt.EditRole):
         try:
             row = index.row()
@@ -72,6 +74,7 @@ class SourceTableModel(QtCore.QAbstractTableModel):
             print("setData failed: {}".format(e))
             print(traceback.format_exc())
 
+    # override
     def insertRow(self, row):
         try:
             self.beginInsertRows(QtCore.QModelIndex(), row, row)
@@ -82,7 +85,7 @@ class SourceTableModel(QtCore.QAbstractTableModel):
             print("insertRow failed: {}".format(e))
             print(traceback.format_exc())
 
-
+    # override
     def removeRow(self, row):
         try:
             if len(self.sources) == 1:
@@ -105,6 +108,6 @@ class SourceTableModel(QtCore.QAbstractTableModel):
             print("removeRow failed: {}".format(e))
             print(traceback.format_exc())
 
-
+    # override
     def getSources(self):
         return self.sources

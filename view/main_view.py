@@ -1,10 +1,13 @@
+import logging
+
 from PyQt5 import QtCore, QtWidgets
 from view.tree_view import TreeView
 import traceback
 
 
 class MainWindow(QtWidgets.QWidget):
-    # sygnals
+
+    # signals
     revert_button_clicked = QtCore.pyqtSignal()
     data_type_changed = QtCore.pyqtSignal("QString")
     source_table_clicked = QtCore.pyqtSignal('QModelIndex')
@@ -14,6 +17,8 @@ class MainWindow(QtWidgets.QWidget):
     change_var_id = QtCore.pyqtSignal()
 
     def __init__(self):
+        logging.info("Initializing MainWindow widget.")
+        # noinspection PyArgumentList
         super().__init__()
         try:
             # UI Initialization
@@ -43,10 +48,11 @@ class MainWindow(QtWidgets.QWidget):
 
     def initUI(self):
         try:
+            logging.info("Constructing UI components.")
             self._create_source_table()
             self._create_metadata_table()
             self.left_side_widget = QtWidgets.QWidget()
-            self.right_side_widget = QtWidgets.QGroupBox("Loreum ipsum dolor sit")
+            self.right_side_widget = QtWidgets.QGroupBox("Does this text ever appear?")
             self.var_id_textbox = QtWidgets.QLineEdit()
             self.path_value_textbox = QtWidgets.QLabel()
             self.type_combobox = QtWidgets.QComboBox()
