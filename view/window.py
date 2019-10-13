@@ -3,8 +3,8 @@ import logging
 from PyQt5 import QtCore, QtWidgets
 
 from view.left import LeftPane
-from view.metadata_table_view import MetadataTableView
-from view.source_table_view import SourceTableView
+from view.metadata import MetadataTableView
+from view.source import SourceTableView
 
 class MainWindow(QtWidgets.QWidget):
 

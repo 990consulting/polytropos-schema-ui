@@ -3,8 +3,8 @@ import sys
 from PyQt5 import QtCore, QtWidgets
 
 from controller.left import LeftPaneController
-from model.source_table_model import SourceTableModel
-from model.metadata_table_model import MetadataTableModel
+from model.source import SourceTableModel
+from model.metadata import MetadataTableModel
 from view.window import MainWindow
 import logging
 

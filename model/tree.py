@@ -1,6 +1,6 @@
 import qtawesome as qta
 from PyQt5 import QtCore, QtGui
-from model.tree_item import TreeItem
+from model.node import TreeItem
 from model.type_manager import TypeManager
 import traceback
 

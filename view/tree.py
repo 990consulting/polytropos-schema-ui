@@ -1,8 +1,8 @@
 from typing import List
 
 from PyQt5 import QtWidgets, QtCore
-from model.tree_model import TreeModel
-from model.tree_item import TreeItem
+from model.tree import TreeModel
+from model.node import TreeItem
 from model.type_manager import TypeManager
 import random
 import string

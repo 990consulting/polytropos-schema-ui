@@ -1,7 +1,7 @@
 import logging
 from PyQt5 import QtWidgets, QtCore
 
-from view.tree_view import TreeView
+from view.tree import TreeView
 
 class LeftPane(QtWidgets.QWidget):
 
