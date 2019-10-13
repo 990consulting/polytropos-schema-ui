@@ -1,4 +1,4 @@
-from сontroller.main_controller import MainController
+from controller.main_controller import MainController
 import sys
 import traceback
 import logging
