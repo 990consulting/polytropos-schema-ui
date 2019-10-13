@@ -1,11 +1,8 @@
 import sys
-from typing import List
 
 from PyQt5 import QtCore, QtWidgets
 
 from controller.tree_controller import TreePaneController
-from model.type_manager import TypeManager
-from model.json_file_manager import JsonFileManager
 from model.source_table_model import SourceTableModel
 from model.metadata_table_model import MetadataTableModel
 from view.main_view import MainWindow
@@ -33,8 +30,8 @@ class MainController:
         logging.info("Connecting main controller events to main view changes.")
         self.main_view.data_type_changed.connect(self.data_type_changed)
         self.main_view.source_table_clicked.connect(self.source_table_clicked)
-        self.main_view.tree_view.tree_selection_changed.connect(self.tree_selection_changed)
-        self.main_view.tree_view.tree_value_changed.connect(self.tree_value_changed)
+        self.main_view.tree_view.tree_selection_changed.connect(self.tree_controller.tree_selection_changed)
+        self.main_view.tree_view.tree_value_changed.connect(self.tree_controller.tree_value_changed)
         self.main_view.metadata_table_clicked.connect(self.metadata_table_clicked)
         self.main_view.change_var_id.connect(self.change_var_id)
 
@@ -55,6 +52,7 @@ class MainController:
 
     def change_var_id(self):
         if self.selectedItem is not None and self.main_view.var_id_textbox.text() != self.selectedItem.getVarId():
+            # noinspection PyArgumentList
             dialog_result = QtWidgets.QMessageBox.question(QtWidgets.QMessageBox(), "Confirm",
                                                            "Are you sure you want to change VarId?")
             if dialog_result == QtWidgets.QMessageBox.Yes:
@@ -97,33 +95,9 @@ class MainController:
         self.selectedItem.setValueChanged(True)
         self.set_decoration_role()
 
-    def tree_value_changed(self, value):
-        self.main_view.right_side_widget.setTitle(value)
-        self.main_view.path_value_textbox.setText(self.selectedItem.fullPath())
-
-    def tree_selection_changed(self, selected):
-        self.select_dynamic_style(selected)
-        self.selectedItem = selected
-        if selected is None:
-            self.disable_right_panel()
-            return
-        self.main_view.right_side_widget.setEnabled(True)
-        self.main_view.var_id_textbox.setText(self.selectedItem.getVarId())
-        self.main_view.right_side_widget.setTitle(self.selectedItem.data())
-        self.main_view.path_value_textbox.setText(self.selectedItem.fullPath())
-        self.is_selection_changed = True
-        self.main_view.type_combobox.clear()
-        if len(selected.getSources()) > 0 and "Folder" in TypeManager.get_types_list(self.selectedItem.getDataType()):
-            self.main_view.type_combobox.addItems(TypeManager.get_types_list(self.selectedItem.getDataType()))
-            self.main_view.type_combobox.model().item(0).setEnabled(False)
-        else:
-            self.main_view.type_combobox.addItems(TypeManager.get_types_list(self.selectedItem.getDataType()))
-        self.main_view.type_combobox.setCurrentText(self.selectedItem.getDataType())
-        self.is_selection_changed = False
-        self.data_type_changed(self.selectedItem.getDataType())
-        self.update_metadata_model()
-
     def select_dynamic_style(self, selected):
+        if selected is None:
+            return
         if selected.valueChanged:
             style = 'blue'
         elif selected.newAdded:
