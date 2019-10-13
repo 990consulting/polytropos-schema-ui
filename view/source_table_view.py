@@ -3,9 +3,9 @@ from PyQt5 import QtWidgets
 class SourceTableView(QtWidgets.QTableView):
     def __init__(self):
         super().__init__()
-        self.source_table.horizontalHeader().hide()
-        self.source_table.verticalHeader().hide()
-        self.source_table.setFixedHeight(62)
+        self.horizontalHeader().hide()
+        self.verticalHeader().hide()
+        self.setFixedHeight(62)
 
     def setup_horizontal_header(self):
         horizontal_header = self.horizontalHeader()

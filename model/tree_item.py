@@ -80,35 +80,28 @@ class TreeItem(object):
         return True
 
     def create_new_item(self):
-        try:
-            new_item = {}
-            new_item["title"] = self.itemData
-            new_item["varId"] = self.varId
-            new_item["dataType"] = self.dataType
-            if len(self.sources):
-                new_item["sources"] = self.sources
-            if len(self.metadata):
-                new_item["metadata"] = self.metadata
-            if self.childCount():
-                new_item["children"] = []
-                for child in self.childItems:
-                    new_item["children"].append(child.create_new_item())
-            return new_item
-        except Exception as e:
-            print("create_new_item failed: {}".format(e))
-            print(traceback.format_exc())
+        new_item = {
+            "title": self.itemData,
+            "varId": self.varId,
+            "dataType": self.dataType
+        }
+        if len(self.sources):
+            new_item["sources"] = self.sources
+        if len(self.metadata):
+            new_item["metadata"] = self.metadata
+        if self.childCount():
+            new_item["children"] = []
+            for child in self.childItems:
+                new_item["children"].append(child.create_new_item())
+        return new_item
 
     def create_duplicate(self, parent_item):
-        try:
-            new_item = TreeItem(self.create_new_item(), parent_item)
-            if self.childCount():
-                for child in self.childItems:
-                    new_item.appendChild(child.create_duplicate(new_item))
+        new_item = TreeItem(self.create_new_item(), parent_item)
+        if self.childCount():
+            for child in self.childItems:
+                new_item.appendChild(child.create_duplicate(new_item))
 
-            return new_item
-        except Exception as e:
-            print("create_duplicate failed: {}".format(e))
-            print(traceback.format_exc())
+        return new_item
 
     def appendChild(self, item):
         self.childItems.append(item)
@@ -128,13 +121,9 @@ class TreeItem(object):
         return True
 
     def fullPath(self):
-        try:
-            path = [self.data()]
-            parent = self.parent()
-            while parent.parent() is not None:
-                path.append(parent.data())
-                parent = parent.parent()
-            return '/' + '/'.join(reversed(path))
-        except Exception as e:
-            print("fullPath failed: {}".format(e))
-            print(traceback.format_exc())
+        path = [self.data()]
+        parent = self.parent()
+        while parent.parent() is not None:
+            path.append(parent.data())
+            parent = parent.parent()
+        return '/' + '/'.join(reversed(path))

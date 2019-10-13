@@ -3,6 +3,7 @@ import logging
 from PyQt5 import QtCore, QtWidgets
 
 from view.metadata_table_view import MetadataTableView
+from view.source_table_view import SourceTableView
 from view.tree_view import TreeView
 import traceback
 
@@ -72,10 +73,7 @@ class MainWindow(QtWidgets.QWidget):
             print(traceback.format_exc())
 
     def _create_source_table(self):
-        self.source_table = QtWidgets.QTableView()
-        self.source_table.horizontalHeader().hide()
-        self.source_table.verticalHeader().hide()
-        self.source_table.setFixedHeight(62)
+        self.source_table = SourceTableView()
 
     def _create_metadata_table(self):
         self.metadata_table = MetadataTableView()

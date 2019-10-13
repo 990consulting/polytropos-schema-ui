@@ -8,17 +8,13 @@ class SourceTableModel(QtCore.QAbstractTableModel):
 
     def __init__(self, sources=None, parent=None):
         super().__init__(parent)
-        try:
-            if sources is None:
-                self.sources = None
-                return
-            self.sources = []
-            for source in sources:
-                if source != "":
-                    self.sources.append(source)
-        except Exception as e:
-            print("Initialization failed: {}".format(e))
-            print(traceback.format_exc())
+        if sources is None:
+            self.sources = None
+            return
+        self.sources = []
+        for source in sources:
+            if source != "":
+                self.sources.append(source)
 
     # override
     def flags(self, index):
@@ -59,54 +55,42 @@ class SourceTableModel(QtCore.QAbstractTableModel):
 
     # override
     def setData(self, index, value, role=QtCore.Qt.EditRole):
-        try:
-            row = index.row()
-            column = index.column()
-            if column != 0 or role != QtCore.Qt.EditRole or value == "":
-                return False
-            if len(self.sources):
-                self.sources[row] = value
-            else:
-                self.sources.insert(row, value)
-            self.dataChanged.emit(index, index)
-            return True
-        except Exception as e:
-            print("setData failed: {}".format(e))
-            print(traceback.format_exc())
+        row = index.row()
+        column = index.column()
+        if column != 0 or role != QtCore.Qt.EditRole or value == "":
+            return False
+        if len(self.sources):
+            self.sources[row] = value
+        else:
+            self.sources.insert(row, value)
+        self.dataChanged.emit(index, index)
+        return True
 
     # override
     def insertRow(self, row):
-        try:
-            self.beginInsertRows(QtCore.QModelIndex(), row, row)
-            self.sources.insert(row + 1, "")
-            self.endInsertRows()
-            return True
-        except Exception as e:
-            print("insertRow failed: {}".format(e))
-            print(traceback.format_exc())
+        self.beginInsertRows(QtCore.QModelIndex(), row, row)
+        self.sources.insert(row + 1, "")
+        self.endInsertRows()
+        return True
 
     # override
     def removeRow(self, row):
-        try:
-            if len(self.sources) == 1:
-                self.sources = []
-                self.beginRemoveRows(QtCore.QModelIndex(), 0, 0)
-                self.endRemoveRows()
-                self.beginInsertRows(QtCore.QModelIndex(), 0, 0)
-                self.endInsertRows()
-            else:
-                self.beginRemoveRows(QtCore.QModelIndex(), row, row)
-                new_sources = []
-                for i in range(len(self.sources)):
-                    if i != row:
-                        new_sources.append(self.sources[i])
-                self.sources = new_sources
-                self.endRemoveRows()
-            self.dataChanged.emit(QtCore.QModelIndex(), QtCore.QModelIndex())
-            return True
-        except Exception as e:
-            print("removeRow failed: {}".format(e))
-            print(traceback.format_exc())
+        if len(self.sources) == 1:
+            self.sources = []
+            self.beginRemoveRows(QtCore.QModelIndex(), 0, 0)
+            self.endRemoveRows()
+            self.beginInsertRows(QtCore.QModelIndex(), 0, 0)
+            self.endInsertRows()
+        else:
+            self.beginRemoveRows(QtCore.QModelIndex(), row, row)
+            new_sources = []
+            for i in range(len(self.sources)):
+                if i != row:
+                    new_sources.append(self.sources[i])
+            self.sources = new_sources
+            self.endRemoveRows()
+        self.dataChanged.emit(QtCore.QModelIndex(), QtCore.QModelIndex())
+        return True
 
     # override
     def getSources(self):

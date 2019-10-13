@@ -190,13 +190,8 @@ class MainController:
         self.main_view.metadata_table.setup_horizontal_header()
 
     def initialize_source_table(self):
-        logging.info("Connecting source view to underlying data model.")
         self.main_view.source_table.setModel(SourceTableModel())
-        # TODO The following is not data-related and should be handled inside the view
-        horizontal_header = self.main_view.source_table.horizontalHeader()
-        horizontal_header.setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)
-        horizontal_header.setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeToContents)
-        horizontal_header.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeToContents)
+        self.main_view.source_table.setup_horizontal_header()
 
     def run(self):
         self.main_view.show()

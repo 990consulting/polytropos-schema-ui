@@ -66,35 +66,30 @@ class TreeModel(QtCore.QAbstractItemModel):
 
     # inherited Method
     def data(self, index, role=QtCore.Qt.DisplayRole):
-
-        try:
-            if not index.isValid():
+        if not index.isValid():
+            return None
+        item = self.get_item(index)
+        if role == QtCore.Qt.BackgroundRole:
+            if not (item.newAdded or item.valueChanged):
                 return None
-            item = self.get_item(index)
-            if role == QtCore.Qt.BackgroundRole:
-                if not (item.newAdded or item.valueChanged):
-                    return None
-            elif role == QtCore.Qt.ForegroundRole:
-                if item.newAdded:
-                    return QtGui.QBrush(QtCore.Qt.darkGreen)
-                elif item.valueChanged:
-                    return QtGui.QBrush(QtCore.Qt.blue)
-                else:
-                    return None
-            elif role == QtCore.Qt.DecorationRole:
-                if item.newAdded:
-                    return qta.icon(TypeManager.type_icon_dictionary[item.getDataType()], options=[{'color': 'green'}])
-                elif item.valueChanged:
-                    return qta.icon(TypeManager.type_icon_dictionary[item.getDataType()], options=[{'color': 'blue'}])
-                else:
-                    return qta.icon(TypeManager.type_icon_dictionary[item.getDataType()], options=[{'color': 'black'}])
-            elif role == QtCore.Qt.DisplayRole:
-                return item.data()
+        elif role == QtCore.Qt.ForegroundRole:
+            if item.newAdded:
+                return QtGui.QBrush(QtCore.Qt.darkGreen)
+            elif item.valueChanged:
+                return QtGui.QBrush(QtCore.Qt.blue)
             else:
                 return None
-        except Exception as e:
-            print("data failed: {}".format(e))
-            print(traceback.format_exc())
+        elif role == QtCore.Qt.DecorationRole:
+            if item.newAdded:
+                return qta.icon(TypeManager.type_icon_dictionary[item.getDataType()], options=[{'color': 'green'}])
+            elif item.valueChanged:
+                return qta.icon(TypeManager.type_icon_dictionary[item.getDataType()], options=[{'color': 'blue'}])
+            else:
+                return qta.icon(TypeManager.type_icon_dictionary[item.getDataType()], options=[{'color': 'black'}])
+        elif role == QtCore.Qt.DisplayRole:
+            return item.data()
+        else:
+            return None
 
     # inherited Method
     def setData(self, index, value, role=QtCore.Qt.EditRole):
@@ -148,23 +143,19 @@ class TreeModel(QtCore.QAbstractItemModel):
 
     # inherited Method
     def dropMimeData(self, data, action, row, column, parent):
-        try:
-            if action != QtCore.Qt.MoveAction:
-                return False
-            target_parent_item = self.get_item(parent)
-            source_item = self.get_item(self.drag_item_index)
-            source_parent_idx = self.drag_item_index.parent()
-            num = source_item.childNumber()
-            new_item = source_item.create_duplicate(target_parent_item)
-            self.removeRow(num, source_parent_idx)
-            if row == -1:
-                target_parent_item.appendChild(new_item)
-                row = target_parent_item.childCount() - 1
-            else:
-                target_parent_item.insertChild(row, new_item)
-            self.insertRow(row, parent)
-            self.rowMoved.emit(self.index(row, 0, parent))
-            return True
-        except Exception as e:
-            print("dropMineData failed: {}".format(e))
-            print(traceback.format_exc())
+        if action != QtCore.Qt.MoveAction:
+            return False
+        target_parent_item = self.get_item(parent)
+        source_item = self.get_item(self.drag_item_index)
+        source_parent_idx = self.drag_item_index.parent()
+        num = source_item.childNumber()
+        new_item = source_item.create_duplicate(target_parent_item)
+        self.removeRow(num, source_parent_idx)
+        if row == -1:
+            target_parent_item.appendChild(new_item)
+            row = target_parent_item.childCount() - 1
+        else:
+            target_parent_item.insertChild(row, new_item)
+        self.insertRow(row, parent)
+        self.rowMoved.emit(self.index(row, 0, parent))
+        return True
