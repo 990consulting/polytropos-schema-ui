@@ -1,6 +1,4 @@
 from controller.main_controller import MainController
-import sys
-import traceback
 import logging
 
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)

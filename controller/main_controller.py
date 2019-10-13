@@ -2,6 +2,8 @@ import sys
 from typing import List
 
 from PyQt5 import QtCore, QtWidgets
+
+from controller.tree_controller import TreePaneController
 from model.type_manager import TypeManager
 from model.json_file_manager import JsonFileManager
 from model.source_table_model import SourceTableModel
@@ -18,9 +20,7 @@ class MainController:
         self.main_view = MainWindow()
         self.selectedItem = None
         self.is_selection_changed = False
-        self.json_manager = JsonFileManager()
-
-        self.create_tree()
+        self.tree_controller = TreePaneController(self)
 
         self.set_models()
         self.connect_callbacks()
@@ -30,14 +30,12 @@ class MainController:
         self.initialize_source_table()
 
     def connect_callbacks(self):
-        logging.info("Connecting events to view changes.")
-        self.main_view.revert_button_clicked.connect(self.revert_clicked)
+        logging.info("Connecting main controller events to main view changes.")
         self.main_view.data_type_changed.connect(self.data_type_changed)
         self.main_view.source_table_clicked.connect(self.source_table_clicked)
         self.main_view.tree_view.tree_selection_changed.connect(self.tree_selection_changed)
         self.main_view.tree_view.tree_value_changed.connect(self.tree_value_changed)
         self.main_view.metadata_table_clicked.connect(self.metadata_table_clicked)
-        self.main_view.save_clicked.connect(self.save_clicked)
         self.main_view.change_var_id.connect(self.change_var_id)
 
     def disable_right_panel(self):
@@ -161,29 +159,6 @@ class MainController:
             model.insertRow(row)
         elif column == 3:
             model.removeRow(row)
-
-    def save_clicked(self):
-        dialog_result = QtWidgets.QMessageBox.question(QtWidgets.QMessageBox(), "Save", "Would you save the changes?")
-        if dialog_result == QtWidgets.QMessageBox.Yes:
-            root_item = self.main_view.tree_view.getRootItem()
-            result_file = []
-            for child in root_item.childItems:
-                result_file.append(child.create_new_item())
-            self.json_manager.save_json_file(result_file)
-            self.json_manager.json_data = result_file
-
-    def create_tree(self):
-        json_data: List = self.json_manager.get_json_data()
-        self.main_view.tree_view.load_data(json_data)
-        self.disable_right_panel()
-
-    def revert_clicked(self):
-        dialog_result = QtWidgets.QMessageBox.question(QtWidgets.QMessageBox(), "Confirm", "Would you revert?")
-        if dialog_result == QtWidgets.QMessageBox.Yes:
-            self.main_view.tree_view.clearContent()
-            self.json_manager.get_json_data()
-            self.create_tree()
-            self.selectedItem = None
 
     def initialize_metadata_table(self):
         self.main_view.metadata_table.setModel(MetadataTableModel())

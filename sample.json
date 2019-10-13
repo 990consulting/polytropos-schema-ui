@@ -184,6 +184,44 @@
           "speech red remain": "Industry gun production after know create.",
           "seven": "Yeah book guy become a employee he. Cost consumer provide keep. Who talk fine certain economic want."
         }
+      },
+      {
+        "title": "Copy of goteborg",
+        "varId": "copy_of_copy_of_i_keyed_list_in_root",
+        "dataType": "KeyedList",
+        "sources": [
+          "source_1_for_i_keyed_list_in_root",
+          "source_2_for_i_keyed_list_in_root"
+        ],
+        "metadata": {
+          "learn program out": "Top piece staff stay series clear article collection. Resource history PM none. Song experience democratic idea lot.",
+          "simple": "Forward light crime name actually human.",
+          "body author": "Still rest they part apply level five. Arm age could week international civil eat. Attention wrong particularly think enter feel.",
+          "yeah great money": "Responsibility pick air son. Manage only by.",
+          "do against": "Unit outside bill activity property. Change town so team effort less.",
+          "hear individual central": "Score better skin myself live. Feeling speech air center. Air clear computer general stay."
+        },
+        "children": [
+          {
+            "title": "wallenburger",
+            "varId": "copy_of_7Wry3P5DJ94nDV3tJyhi",
+            "dataType": "List",
+            "children": [
+              {
+                "title": "gravy",
+                "varId": "copy_of_copy_of_i_text_in_keyed_list",
+                "dataType": "Binary",
+                "sources": [
+                  "gravysource2"
+                ],
+                "metadata": {
+                  "foo": "bar",
+                  "roux": "flour"
+                }
+              }
+            ]
+          }
+        ]
       }
     ]
   },

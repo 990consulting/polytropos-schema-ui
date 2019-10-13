@@ -15,7 +15,6 @@ class JsonFileManager(QtWidgets.QWidget):
         self.file_path = ""
 
     def get_json_data(self) -> List:
-        print(self.file_path)
         if self.file_path == "":
             options = QtWidgets.QFileDialog.Options()
             options |= QtWidgets.QFileDialog.DontUseNativeDialog
