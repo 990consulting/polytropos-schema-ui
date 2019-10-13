@@ -2,7 +2,7 @@ import sys
 
 from PyQt5 import QtCore, QtWidgets
 
-from controller.tree_controller import TreePaneController
+from controller.left import LeftPaneController
 from model.source_table_model import SourceTableModel
 from model.metadata_table_model import MetadataTableModel
 from view.main_view import MainWindow
@@ -17,7 +17,7 @@ class MainController:
         self.main_view = MainWindow()
         self.selectedItem = None
         self.is_selection_changed = False
-        self.tree_controller = TreePaneController(self)
+        self.left_pane_controller = LeftPaneController(self)
 
         self.set_models()
         self.connect_callbacks()
@@ -30,8 +30,8 @@ class MainController:
         logging.info("Connecting main controller events to main view changes.")
         self.main_view.data_type_changed.connect(self.data_type_changed)
         self.main_view.source_table_clicked.connect(self.source_table_clicked)
-        self.main_view.tree_view.tree_selection_changed.connect(self.tree_controller.tree_selection_changed)
-        self.main_view.tree_view.tree_value_changed.connect(self.tree_controller.tree_value_changed)
+        self.main_view.tree_view.tree_selection_changed.connect(self.left_pane_controller.tree_selection_changed)
+        self.main_view.tree_view.tree_value_changed.connect(self.left_pane_controller.tree_value_changed)
         self.main_view.metadata_table_clicked.connect(self.metadata_table_clicked)
         self.main_view.change_var_id.connect(self.change_var_id)
 

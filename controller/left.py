@@ -8,7 +8,7 @@ from model.type_manager import TypeManager
 if TYPE_CHECKING:
     from controller.main_controller import MainController
 
-class TreePaneController:
+class LeftPaneController:
 
     def __init__(self, main_controller: "MainController"):
         self.main_controller: "MainController" = main_controller
