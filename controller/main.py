@@ -5,7 +5,7 @@ from PyQt5 import QtCore, QtWidgets
 from controller.left import LeftPaneController
 from model.source_table_model import SourceTableModel
 from model.metadata_table_model import MetadataTableModel
-from view.main_view import MainWindow
+from view.window import MainWindow
 import logging
 
 class MainController:
@@ -30,8 +30,8 @@ class MainController:
         logging.info("Connecting main controller events to main view changes.")
         self.main_view.data_type_changed.connect(self.data_type_changed)
         self.main_view.source_table_clicked.connect(self.source_table_clicked)
-        self.main_view.tree_view.tree_selection_changed.connect(self.left_pane_controller.tree_selection_changed)
-        self.main_view.tree_view.tree_value_changed.connect(self.left_pane_controller.tree_value_changed)
+        self.main_view.left_pane.tree_view.tree_selection_changed.connect(self.left_pane_controller.tree_selection_changed)
+        self.main_view.left_pane.tree_view.tree_value_changed.connect(self.left_pane_controller.tree_value_changed)
         self.main_view.metadata_table_clicked.connect(self.metadata_table_clicked)
         self.main_view.change_var_id.connect(self.change_var_id)
 
@@ -66,13 +66,13 @@ class MainController:
         self.set_decoration_role()
 
     def set_decoration_role(self):
-        index = self.main_view.tree_view.selectedIndexes()[0]
-        self.main_view.tree_view.dataChanged(index, index, [QtCore.Qt.DecorationRole])
-        self.main_view.tree_view.dataChanged(index, index, [QtCore.Qt.ForegroundRole])
+        index = self.main_view.left_pane.tree_view.selectedIndexes()[0]
+        self.main_view.left_pane.tree_view.dataChanged(index, index, [QtCore.Qt.DecorationRole])
+        self.main_view.left_pane.tree_view.dataChanged(index, index, [QtCore.Qt.ForegroundRole])
         self.set_style_to_tree('blue')
 
     def set_style_to_tree(self, style):
-        self.main_view.tree_view.setStyleSheet(
+        self.main_view.left_pane.tree_view.setStyleSheet(
             '''
                 QTreeView::item::selected {
                   selection-color: ''' + style + ''';
@@ -90,8 +90,8 @@ class MainController:
         if self.selectedItem.getDataType() == selected:
             return
         self.selectedItem.setDataType(selected)
-        current_index = self.main_view.tree_view.selectedIndexes()[0]
-        self.main_view.tree_view.dataChanged(current_index, current_index, [QtCore.Qt.DecorationRole])
+        current_index = self.main_view.left_pane.tree_view.selectedIndexes()[0]
+        self.main_view.left_pane.tree_view.dataChanged(current_index, current_index, [QtCore.Qt.DecorationRole])
         self.selectedItem.setValueChanged(True)
         self.set_decoration_role()
 

@@ -6,7 +6,7 @@ from model.json_file_manager import JsonFileManager
 from model.type_manager import TypeManager
 
 if TYPE_CHECKING:
-    from controller.main_controller import MainController
+    from controller.main import MainController
 
 class LeftPaneController:
 
@@ -17,19 +17,19 @@ class LeftPaneController:
         self.connect_callbacks()
 
     def connect_callbacks(self):
-        self.main_controller.main_view.revert_button_clicked.connect(self.revert_clicked)
-        self.main_controller.main_view.save_clicked.connect(self.save_clicked)
+        self.main_controller.main_view.left_pane.revert_button_clicked.connect(self.revert_clicked)
+        self.main_controller.main_view.left_pane.save_clicked.connect(self.save_clicked)
 
     def create_tree(self):
         json_data: List = self.json_manager.get_json_data()
-        self.main_controller.main_view.tree_view.load_data(json_data)
+        self.main_controller.main_view.left_pane.tree_view.load_data(json_data)
         self.main_controller.disable_right_panel()
 
     def save_clicked(self):
         # noinspection PyArgumentList
         dialog_result = QtWidgets.QMessageBox.question(QtWidgets.QMessageBox(), "Save", "Would you save the changes?")
         if dialog_result == QtWidgets.QMessageBox.Yes:
-            root_item = self.main_controller.main_view.tree_view.getRootItem()
+            root_item = self.main_controller.main_view.left_pane.tree_view.getRootItem()
             result_file = []
             for child in root_item.childItems:
                 result_file.append(child.create_new_item())
@@ -40,7 +40,7 @@ class LeftPaneController:
         # noinspection PyArgumentList
         dialog_result = QtWidgets.QMessageBox.question(QtWidgets.QMessageBox(), "Confirm", "Would you revert?")
         if dialog_result == QtWidgets.QMessageBox.Yes:
-            self.main_controller.main_view.tree_view.clearContent()
+            self.main_controller.main_view.left_pane.tree_view.clearContent()
             self.json_manager.get_json_data()
             self.create_tree()
             self.main_controller.selectedItem = None
