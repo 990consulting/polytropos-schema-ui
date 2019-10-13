@@ -5,7 +5,6 @@ from PyQt5 import QtCore, QtWidgets
 from view.metadata_table_view import MetadataTableView
 from view.source_table_view import SourceTableView
 from view.tree_view import TreeView
-import traceback
 
 
 class MainWindow(QtWidgets.QWidget):
@@ -23,54 +22,38 @@ class MainWindow(QtWidgets.QWidget):
         logging.info("Initializing MainWindow widget.")
         # noinspection PyArgumentList
         super().__init__()
-        try:
-            # UI Initialization
-            self.initUI()
-            # actions
-            self.connect_signals()
-        except Exception as e:
-            print("View creation failed: {}".format(e))
-            print(traceback.format_exc())
+        # UI Initialization
+        logging.info("Constructing UI components.")
+        self._create_source_table()
+        self._create_metadata_table()
+        # noinspection PyArgumentList
+        self.left_side_widget = QtWidgets.QWidget()
+        self.right_side_widget = QtWidgets.QGroupBox("Does this text ever appear?")
+        self.var_id_textbox = QtWidgets.QLineEdit()
+        self.path_value_textbox = QtWidgets.QLabel()
+        self.type_combobox = QtWidgets.QComboBox()
+        self.tree_view = TreeView()
+        self._create_right_side_layout()
+        self._create_left_side_layout()
+        splitter = QtWidgets.QSplitter()
+        splitter.addWidget(self.left_side_widget)
+        splitter.addWidget(self.right_side_widget)
+        layout = QtWidgets.QHBoxLayout(self)
+        # noinspection PyArgumentList
+        layout.addWidget(splitter)
+        # actions
+        self.connect_signals()
 
+    # noinspection PyUnresolvedReferences
     def connect_signals(self):
-        try:
-            self.type_combobox.currentTextChanged.connect(self.data_type_changed)
-            self.source_table.clicked.connect(self.source_table_clicked)
-            self.metadata_table.clicked.connect(self.metadata_table_clicked)
-            self.save_button.clicked.connect(self.save_clicked)
-            self.var_id_textbox.editingFinished.connect(self.change_var_id)
-            self.revert_button.clicked.connect(self.revert_button_clicked)
-            self.search_field.textChanged.connect(self.search_text_entered)
-            self.search_text_entered.connect(self.tree_view.start_search)
-        except Exception as e:
-            print("connect_signals failed: {}".format(e))
-            print(traceback.format_exc())
-
-    """
-    UI initializate methods
-    """
-
-    def initUI(self):
-        try:
-            logging.info("Constructing UI components.")
-            self._create_source_table()
-            self._create_metadata_table()
-            self.left_side_widget = QtWidgets.QWidget()
-            self.right_side_widget = QtWidgets.QGroupBox("Does this text ever appear?")
-            self.var_id_textbox = QtWidgets.QLineEdit()
-            self.path_value_textbox = QtWidgets.QLabel()
-            self.type_combobox = QtWidgets.QComboBox()
-            self.tree_view = TreeView()
-            self._create_right_side_layout()
-            self._create_left_side_layout()
-            splitter = QtWidgets.QSplitter()
-            splitter.addWidget(self.left_side_widget)
-            splitter.addWidget(self.right_side_widget)
-            layout = QtWidgets.QHBoxLayout(self)
-            layout.addWidget(splitter)
-        except Exception as e:
-            print("UI initialization failed: {}".format(e))
-            print(traceback.format_exc())
+        self.type_combobox.currentTextChanged.connect(self.data_type_changed)
+        self.source_table.clicked.connect(self.source_table_clicked)
+        self.metadata_table.clicked.connect(self.metadata_table_clicked)
+        self.save_button.clicked.connect(self.save_clicked)
+        self.var_id_textbox.editingFinished.connect(self.change_var_id)
+        self.revert_button.clicked.connect(self.revert_button_clicked)
+        self.search_field.textChanged.connect(self.search_text_entered)
+        self.search_text_entered.connect(self.tree_view.start_search)
 
     def _create_source_table(self):
         self.source_table = SourceTableView()
@@ -78,6 +61,7 @@ class MainWindow(QtWidgets.QWidget):
     def _create_metadata_table(self):
         self.metadata_table = MetadataTableView()
 
+    # noinspection PyArgumentList
     def _create_left_pane_buttons(self):
         layout = QtWidgets.QHBoxLayout()
         self.save_button = QtWidgets.QPushButton("Save")
@@ -94,9 +78,11 @@ class MainWindow(QtWidgets.QWidget):
         layout = QtWidgets.QHBoxLayout()
         self.search_field = QtWidgets.QLineEdit()
         self.search_field.setPlaceholderText("Search...")
+        # noinspection PyArgumentList
         layout.addWidget(self.search_field)
         return layout
 
+    # noinspection PyArgumentList
     def _create_right_side_layout(self):
         layout = QtWidgets.QGridLayout(self.right_side_widget)
         layout.addWidget(QtWidgets.QLabel("Variable ID:"), 0, 0)
@@ -117,4 +103,5 @@ class MainWindow(QtWidgets.QWidget):
         layout.setContentsMargins(9, 0, 9, 0)
         layout.addLayout(self._create_left_pane_buttons())
         layout.addLayout(self._create_search_bar())
+        # noinspection PyArgumentList
         layout.addWidget(self.tree_view)
