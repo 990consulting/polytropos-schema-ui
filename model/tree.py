@@ -1,7 +1,7 @@
 import qtawesome as qta
 from PyQt5 import QtCore, QtGui
 from model.node import TreeItem
-from model.type_manager import TypeManager
+from model.datatypes import DataTypes
 import traceback
 
 
@@ -81,11 +81,11 @@ class TreeModel(QtCore.QAbstractItemModel):
                 return None
         elif role == QtCore.Qt.DecorationRole:
             if item.newAdded:
-                return qta.icon(TypeManager.type_icon_dictionary[item.getDataType()], options=[{'color': 'green'}])
+                return qta.icon(DataTypes.type_icon_dictionary[item.getDataType()], options=[{'color': 'green'}])
             elif item.valueChanged:
-                return qta.icon(TypeManager.type_icon_dictionary[item.getDataType()], options=[{'color': 'blue'}])
+                return qta.icon(DataTypes.type_icon_dictionary[item.getDataType()], options=[{'color': 'blue'}])
             else:
-                return qta.icon(TypeManager.type_icon_dictionary[item.getDataType()], options=[{'color': 'black'}])
+                return qta.icon(DataTypes.type_icon_dictionary[item.getDataType()], options=[{'color': 'black'}])
         elif role == QtCore.Qt.DisplayRole:
             return item.data()
         else:
@@ -125,7 +125,7 @@ class TreeModel(QtCore.QAbstractItemModel):
         if not index.isValid():
             return QtCore.Qt.ItemIsEnabled
         gen_flags = QtCore.Qt.ItemIsEnabled | QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsDragEnabled | QtCore.Qt.ItemIsEditable
-        if self.get_item(index).getDataType() in TypeManager.collections:
+        if self.get_item(index).getDataType() in DataTypes.collections:
             return gen_flags | QtCore.Qt.ItemIsDropEnabled
         else:
             return gen_flags | QtCore.Qt.ItemNeverHasChildren

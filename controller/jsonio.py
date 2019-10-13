@@ -8,7 +8,7 @@ from typing import List
 from PyQt5 import QtWidgets
 
 
-class JsonFileManager(QtWidgets.QWidget):
+class JsonController(QtWidgets.QWidget):
     def __init__(self):
         # noinspection PyArgumentList
         super().__init__()

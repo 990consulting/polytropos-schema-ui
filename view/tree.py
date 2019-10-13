@@ -3,7 +3,7 @@ from typing import List
 from PyQt5 import QtWidgets, QtCore
 from model.tree import TreeModel
 from model.node import TreeItem
-from model.type_manager import TypeManager
+from model.datatypes import DataTypes
 import random
 import string
 import traceback
@@ -109,7 +109,7 @@ class TreeView(QtWidgets.QTreeView, QtCore.QObject):
         if self._curItem is None:
             self._set_menu_items_visible([False, False, False, False, False, True, True])
         else:
-            if self._curItem.dataType in TypeManager.collections:
+            if self._curItem.dataType in DataTypes.collections:
                 self._set_menu_items_visible([True, True, True, True, True, False, False])
             else:
                 self._set_menu_items_visible([True, True, True, False, False, False, False])

@@ -6,7 +6,7 @@ You can easily add new types and icons here.
 """
 
 
-class TypeManager(object):
+class DataTypes(object):
     collections = ["Folder", "List", "KeyedList"]
     primitives = ["Text", "Integer", "Decimal", "Currency", "Date", "Unary", "Binary"]
     type_icon_dictionary = {
@@ -25,7 +25,7 @@ class TypeManager(object):
 
     @staticmethod
     def get_types_list(value_type):
-        if value_type in TypeManager.collections:
-            return TypeManager.collections
+        if value_type in DataTypes.collections:
+            return DataTypes.collections
         else:
-            return TypeManager.primitives
+            return DataTypes.primitives
