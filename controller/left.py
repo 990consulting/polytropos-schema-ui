@@ -20,6 +20,8 @@ class LeftPaneController:
     def connect_callbacks(self):
         self.left_pane.revert_button_clicked.connect(self.revert_clicked)
         self.left_pane.save_clicked.connect(self.save_clicked)
+        self.left_pane.tree_view.tree_selection_changed.connect(self.tree_selection_changed)
+        self.left_pane.tree_view.tree_value_changed.connect(self.tree_value_changed)
 
     def create_tree(self):
         json_data: List = self.json_manager.get_json_data()

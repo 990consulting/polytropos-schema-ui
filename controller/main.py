@@ -30,8 +30,6 @@ class MainController:
         logging.info("Connecting main controller events to main view changes.")
         self.main_view.data_type_changed.connect(self.data_type_changed)
         self.main_view.source_table_clicked.connect(self.source_table_clicked)
-        self.left_pane.tree_view.tree_selection_changed.connect(self.left_pane_controller.tree_selection_changed)
-        self.left_pane.tree_view.tree_value_changed.connect(self.left_pane_controller.tree_value_changed)
         self.main_view.metadata_table_clicked.connect(self.metadata_table_clicked)
         self.main_view.change_var_id.connect(self.change_var_id)
 
